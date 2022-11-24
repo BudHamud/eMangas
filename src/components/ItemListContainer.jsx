@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ItemListContainer = () => {
+const ItemListContainer = (props) => {
     return (
-        <div>
-            
+        <div style={{backgroundColor: '#555'}}>
+            {props.greeting}
         </div>
     );
 }

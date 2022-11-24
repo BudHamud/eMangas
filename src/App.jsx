@@ -11,7 +11,7 @@ function App() {
     <>
 
     <Header />
-    <ItemListContainer />
+    <ItemListContainer greeting={'Este es un saludo por props'} />
     <Inicio />
     <Footer />
 
