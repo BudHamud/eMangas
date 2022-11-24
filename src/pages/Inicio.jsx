@@ -19,6 +19,51 @@ const Inicio = () => {
             nombre: 'Banana Fish 6',
             precio: 1900,
             img: '/manga3.jpg'
+        },
+        {
+            nombre: 'Oldboy 1',
+            precio: 3900,
+            img: '/manga1.jpg'
+        },
+        {
+            nombre: '20th Century Boys 1',
+            precio: 3950,
+            img: '/manga2.jpg'
+        },
+        {
+            nombre: 'Banana Fish 6',
+            precio: 1900,
+            img: '/manga3.jpg'
+        },
+        {
+            nombre: 'Oldboy 1',
+            precio: 3900,
+            img: '/manga1.jpg'
+        },
+        {
+            nombre: '20th Century Boys 1',
+            precio: 3950,
+            img: '/manga2.jpg'
+        },
+        {
+            nombre: 'Banana Fish 6',
+            precio: 1900,
+            img: '/manga3.jpg'
+        },
+        {
+            nombre: 'Oldboy 1',
+            precio: 3900,
+            img: '/manga1.jpg'
+        },
+        {
+            nombre: '20th Century Boys 1',
+            precio: 3950,
+            img: '/manga2.jpg'
+        },
+        {
+            nombre: 'Banana Fish 6',
+            precio: 1900,
+            img: '/manga3.jpg'
         }
     ]
 
