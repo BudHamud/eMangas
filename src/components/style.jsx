@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from '../Context/theme'
+import { theme } from '../context/theme'
 
 export const HeaderStyle = styled.header`
   background-color: ${theme.bg};
