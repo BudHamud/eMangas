@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MangasContainer } from "./style";
 
 const MangaComp = (props) => {
@@ -12,7 +13,7 @@ const MangaComp = (props) => {
           <img src={e.img} />
           <p>{e.nombre}</p>
           <p>${ e.precio }</p>
-          <button>Ver detalles →</button>
+          <Link to={`/mangas/${e.id}`}>Ver detalles →</Link>
         </div>
     ))}
 

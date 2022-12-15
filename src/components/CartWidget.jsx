@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const CartWidget = (props) => {
     return (
-        <li className='cart'><a onClick={props.addCart} href='#'><i className="fa-solid fa-cart-shopping" /><p>{props.count}</p></a></li>
+        <li className='cart'><Link to='/carrito'><i className="fa-solid fa-cart-shopping" /><p>{props.count}</p></Link></li>
     );
 }
 

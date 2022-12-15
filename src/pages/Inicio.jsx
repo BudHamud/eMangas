@@ -1,77 +1,19 @@
 import React from 'react';
+import Footer from '../components/Footer';
 import MangaComp from '../components/MangaComp';
 import { MainStyle } from '../components/style';
+import { Link } from 'react-router-dom';
 
 const Inicio = () => {
 
-    const mangas = [
-        {
-            nombre: 'Oldboy 1',
-            precio: 3900,
-            img: '/manga1.jpg'
-        },
-        {
-            nombre: '20th Century Boys 1',
-            precio: 3950,
-            img: '/manga2.jpg'
-        },
-        {
-            nombre: 'Banana Fish 6',
-            precio: 1900,
-            img: '/manga3.jpg'
-        },
-        {
-            nombre: 'Oldboy 1',
-            precio: 3900,
-            img: '/manga1.jpg'
-        },
-        {
-            nombre: '20th Century Boys 1',
-            precio: 3950,
-            img: '/manga2.jpg'
-        },
-        {
-            nombre: 'Banana Fish 6',
-            precio: 1900,
-            img: '/manga3.jpg'
-        },
-        {
-            nombre: 'Oldboy 1',
-            precio: 3900,
-            img: '/manga1.jpg'
-        },
-        {
-            nombre: '20th Century Boys 1',
-            precio: 3950,
-            img: '/manga2.jpg'
-        },
-        {
-            nombre: 'Banana Fish 6',
-            precio: 1900,
-            img: '/manga3.jpg'
-        },
-        {
-            nombre: 'Oldboy 1',
-            precio: 3900,
-            img: '/manga1.jpg'
-        },
-        {
-            nombre: '20th Century Boys 1',
-            precio: 3950,
-            img: '/manga2.jpg'
-        },
-        {
-            nombre: 'Banana Fish 6',
-            precio: 1900,
-            img: '/manga3.jpg'
-        }
-    ]
-
     return (
+        <>
         <MainStyle>
-            <h2>Mangas</h2>
-            <MangaComp data={ mangas } />
+            <h2>Bienvenid@ a eMangas</h2>
+            <Link to={'/mangas'}>Ver Mangas</Link>
         </MainStyle>
+        <Footer />
+        </>
     );
 }
 

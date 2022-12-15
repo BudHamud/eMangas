@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { theme } from '../Context/theme'
 
 export const HeaderStyle = styled.header`
-  background-color: #333;
-  color: white;
+  background-color: ${theme.bg};
   padding: 10px;
   nav {
     display: flex;
@@ -16,6 +16,9 @@ export const HeaderStyle = styled.header`
         display: flex;
         align-items: center;
         text-decoration: none;
+        h3 {
+          color: ${theme.color};
+        }
         img {
           margin-right: 5px;
         }
@@ -28,6 +31,7 @@ export const HeaderStyle = styled.header`
         list-style: none;
         a {
           text-decoration: none;
+          color: ${theme.color};
         }
       }
     }
@@ -44,6 +48,7 @@ export const HeaderStyle = styled.header`
       li {
         a {
           i {
+            color: ${theme.color};
             &:hover {
               color: #0aa;
             }
@@ -54,12 +59,19 @@ export const HeaderStyle = styled.header`
         position: relative;
         p {
           background-color: #e33;
-          padding: 1px;
-          border-radius: 50px;
+          padding: 0 5px;
+          border-radius: 30% 70% 50% 50% / 0% 0% 100% 100%;
           position: absolute;
-          top: -16px;
-          right: -5px;
+          top: 20px;
+          right: -1.5px;
         }
+      }
+      .mode {
+        height: 20px;
+        width: 20px;
+        background-color: #FFF;
+        border-radius: 100px;
+        position: relative;
       }
     }
   }
@@ -106,13 +118,11 @@ export const MangasContainer = styled.section`
       width: 150px;
       height: 220px;
     }
-    button {
-      border: none;
-      background-color: transparent;
+    a {
+      text-decoration: none;
       transition: ease-out 0.4s;
       &:hover {
-        cursor: pointer;
-        transform: translateX(5px);
+        border-bottom: solid #FFF 1px;
       }
     }
   }
@@ -125,6 +135,7 @@ export const MangasContainer = styled.section`
 
 export const MainStyle = styled.main`
   background-color: #222;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,3 +153,42 @@ export const FooterStyle = styled.footer`
   justify-content: center;
   align-items: center;
 `;
+
+export const MangaDetailStyle = styled.section`
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+      max-width: 400px;
+      max-height: 400px;
+    }
+  .detalle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 20px;
+    height: 300px;
+    button {
+      color: #000;
+      border: none;
+      padding: 5px;
+    }
+  }
+  @media (max-width: 520px) {
+    flex-direction: column;
+    .detalle {
+      margin-left: 0
+    }
+  }
+  @media (max-width: 320px) {
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .detalle {
+      height: 150px;
+    }
+  }
+`

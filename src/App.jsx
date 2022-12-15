@@ -1,20 +1,24 @@
 import './App.css'
 import React from 'react'
-import Header from './components/Header'
+import Header from './components/NavBar'
 import Inicio from './pages/Inicio'
-import Footer from './components/Footer'
 import ItemListContainer from './components/ItemListContainer'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ItemDetailContainer from './components/ItemDetailContainer'
 
 function App() {
 
   return (
     <>
-
+    <BrowserRouter>
     <Header />
-    <ItemListContainer greeting={'Este es un saludo por props'} />
-    <Inicio />
-    <Footer />
-
+    <Routes>
+      <Route index path='/' element={<Inicio />} />
+      <Route path='/mangas' element={<ItemListContainer />} />
+      <Route path='/categoria/:id' element={<ItemListContainer />} />
+      <Route path='/mangas/:id' element={<ItemDetailContainer />} />
+    </Routes>
+    </BrowserRouter>
     </>
   )
 }

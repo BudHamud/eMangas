@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import { Link, useParams } from 'react-router-dom'
-import { gFetch } from '../helpers/gFetch'
-import { MainStyle } from './style'
-import Footer from './Footer'
-import MangaComp from './MangaComp'
+import { gFetch } from "../helpers/gFetch";
+import Footer from "./Footer";
+import MangaDetail from "./MangaDetail";
+import { MainStyle } from "./style";
 
-    const ItemListContainer = () => {
+const ItemDetailContainer = () => {
 
     const [ mangas, setMangas ] =   useState([])
     const [ loading, setLoading ] = useState(true) 
@@ -14,7 +14,7 @@ import MangaComp from './MangaComp'
     useEffect(()=>{
         if (id) {
             gFetch()
-            .then(res =>  setMangas(res.filter(manga => manga.categoria === id )) )
+            .then(res =>  setMangas(res.find(e => e.id === id)))
             .catch(err => console.log(err))
             .finally(()=> setLoading(false))             
         } else {
@@ -25,18 +25,18 @@ import MangaComp from './MangaComp'
         }   
     }, [id])
 
-    console.log(id)    
-  return (
-    <>
+    return (
+        <>
         <MainStyle>
         {
-            loading ? 'cargando...' :
-            <MangaComp data={mangas} />
-        }   
+            loading ? 'Cargando...' :
+            <MangaDetail data={mangas} />
+        }
         </MainStyle>
         <Footer />
-    </>
-  )
+            
+        </>
+    );
 }
 
-export default ItemListContainer
+export default ItemDetailContainer;

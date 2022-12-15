@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { HeaderStyle, Logo } from './style'
 import CartWidget from './CartWidget';
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 
     const [count, setCount] = useState(0)
     const [current, setCurrent] = useState(false)
-
-    const addCart = () => {
-        setCount(count + 1)
-    }
 
     const showNav = () => {
         setCurrent(!current)
@@ -19,24 +16,24 @@ const Header = () => {
         <HeaderStyle>
             <nav>
                 <div className='brand'>
-                <a href='#'>
+                <Link to={'/'}>
                 <Logo src='/logo3.png' />
                 <h3>eMangas</h3>
-                </a>
-                <i onClick={showNav} class="fa-solid fa-bars"></i>
+                </Link>
+                <i onClick={showNav} className="fa-solid fa-bars"></i>
                 </div>
                 <ul className={current ? 'items show' : 'items'}>
-                    <li><a href='#'>Inicio</a></li>
-                    <li><a href='#'>Mangas</a></li>
-                    <li><a href='#'>Contacto</a></li>
+                    <li><Link to={'/'}>Inicio</Link></li>
+                    <li><Link to={'/mangas'}>Mangas</Link></li>
+                    <li><Link to={'/categoria/seinen'}>Seinen</Link></li>
                 </ul>
                 <ul className={current ? 'userConfig show' : 'userConfig'}>
-                    <li><a href='#'><i class="fa-solid fa-magnifying-glass" /></a></li>
+                    <li><Link to={'/'}><i className="fa-solid fa-magnifying-glass" /></Link></li>
                     <CartWidget 
                     count={ count }
-                    addCart={ addCart }
                     />
-                    <li><a href='#'><i className="fa-solid fa-user" /></a></li>
+                    <li><Link to={'/'}><i className="fa-solid fa-user" /></Link></li>
+                    <li><div className='mode'></div></li>
                 </ul>
             </nav>
         </HeaderStyle>
