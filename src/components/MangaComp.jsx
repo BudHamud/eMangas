@@ -1,23 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MangasContainer } from "./style";
 
-const MangaComp = (props) => {
-  const mangas = props.data;
+const MangaComp = ({ data }) => {
+
+  const formato = [
+    "kanzenX",
+    "kanzenM",
+    "kanzenS",
+    "kanzenP",
+    "kanzenD",
+    "tankoX",
+    "tankoM",
+    "tankoS",
+    "tankoP",
+    "bunko",
+  ];
+
+  const precio = [4900, 3400, 2300, 2300, 3900, 3600, 2500, 1500, 1300, 1250];
 
   return (
-    <MangasContainer className="mangasContainer">
-
-      {mangas.map((e, i) => (
-        <div key={i} className="mangaComp">
-          <img src={e.img} />
-          <p>{e.nombre}</p>
-          <p>${ e.precio }</p>
-          <Link to={`/mangas/${e.id}`}>Ver detalles →</Link>
-        </div>
-    ))}
-
-    </MangasContainer>
+    <div className="mangaComp">
+      <div className="zoom">
+        <img src={data.img} />
+      </div>
+      <p>{data.nombre}</p>
+      <p>${precio[formato.indexOf(data.formato)]}</p>
+      <Link to={`/mangas/${data.id}`}>Ver detalles →</Link>
+    </div>
   );
 };
 

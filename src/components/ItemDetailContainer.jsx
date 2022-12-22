@@ -1,40 +1,44 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from 'react-router-dom'
-import { gFetch } from "../helpers/gFetch";
+import { useParams } from 'react-router-dom'
+import Cargando from './Cargando'
 import Footer from "./Footer";
 import MangaDetail from "./MangaDetail";
 import { MainStyle } from "./style";
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
+import Breadcrumbs from "./Breadcrumbs";
 
 const ItemDetailContainer = () => {
 
-    const [ mangas, setMangas ] =   useState([])
-    const [ loading, setLoading ] = useState(true) 
+    const [manga, setManga] = useState({})
     const { id } = useParams()
     
-    useEffect(()=>{
-        if (id) {
-            gFetch()
-            .then(res =>  setMangas(res.find(e => e.id === id)))
-            .catch(err => console.log(err))
-            .finally(()=> setLoading(false))             
-        } else {
-            gFetch()
-            .then(res =>  setMangas(res))
-            .catch(err => console.log(err))
-            .finally(()=> setLoading(false))            
-        }   
-    }, [id])
+    useEffect(() => {
+        const db = getFirestore();
+        const queryManga = doc(db, "mangas", id);
+        getDoc(queryManga)
+          .then((ans) => setManga({ id: ans.id, ...ans.data() }))
+          .catch((e) => console.log(e))
+    
+      }, [id]);
+
 
     return (
         <>
+
         <MainStyle>
         {
-            loading ? 'Cargando...' :
-            <MangaDetail data={mangas} />
+            manga.id ?
+            <Breadcrumbs actual={manga.nombre} /> :
+            ''
+        }
+        {
+            manga.id ? 
+            <MangaDetail data={manga} /> :
+            <Cargando />
         }
         </MainStyle>
         <Footer />
-            
+
         </>
     );
 }
