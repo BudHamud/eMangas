@@ -8,6 +8,12 @@ const Buscar = () => {
 
     const [busqueda, setBusqueda] = useState('')
     const [mangas, loading] = getMangas()
+    const arr = []
+
+    mangas.map(e => {
+        e.nombre.toLowerCase().includes(busqueda.toLowerCase()) ?
+        '' : arr.push(e)
+    })
 
     return (
         <>
@@ -18,12 +24,15 @@ const Buscar = () => {
                     busqueda === '' ? 'Ningún resultado' :
                     <MangasContainer>
                     {
-                        mangas.map((e, i) => {
-                            const found = e.nombre.toLowerCase().includes(busqueda.toLowerCase()) ?
-                            <MangaComp data={e} index={i} />
-                            : ''
-                            return found
-                        })
+                        mangas.map(e => (
+                            e.nombre.toLowerCase().includes(busqueda.toLowerCase()) ?
+                            <MangaComp data={e} /> : ''
+                        ))
+                    }
+                    {
+                        arr.length === mangas.length
+                        ? <p style={{margin: '0 auto'}}>Ningún resultado</p>
+                        : ''
                     }
                     </MangasContainer>
                 }

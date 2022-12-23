@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { ControlStyle } from "./style";
 
-const MangaComp = ({ data, index }) => {
-
+const ControlCompra = ({ data }) => {
   const formato = [
     "kanzenX",
     "kanzenM",
@@ -18,16 +17,15 @@ const MangaComp = ({ data, index }) => {
 
   const precio = [4900, 3400, 2300, 2300, 3900, 3600, 2500, 1500, 1300, 1250];
 
+  let total =+ Number(precio[formato.indexOf(data.formato)]) * Number(data.cantidad)
+  console.log(total);
+
   return (
-    <div key={index} className="mangaComp">
-      <div className="zoom">
-        <img src={data.img} />
-      </div>
+    <ControlStyle>
       <p>{data.nombre}</p>
       <p>${precio[formato.indexOf(data.formato)]}</p>
-      <Link to={`/mangas/${data.id}`}>Ver detalles →</Link>
-    </div>
+    </ControlStyle>
   );
 };
 
-export default MangaComp;
+export default ControlCompra;

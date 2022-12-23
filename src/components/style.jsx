@@ -132,6 +132,23 @@ export const CargandoStyle = styled.div`
   border-radius: 50px;
   padding: 15px;
   animation: load 1s ease-in-out infinite;
+  .apple {
+    background-color: ${theme.terColor};
+    height: 50px;
+    width: 50px;
+    border-radius: 35px 35px 50px 50px;
+    position: relative;
+    &::after {
+      content: "";
+      background-color: ${theme.secColor};
+      width: 20px;
+      height: 10px;
+      border-radius: 50px 10px 50px 10px;
+      position: absolute;
+      right: 30%;
+      top: -5px;
+    }
+  }
   @keyframes load {
     0% {
       transform: rotateX(0deg);
@@ -179,6 +196,11 @@ export const MangasContainer = styled.section`
     width: auto;
     display: flex;
     flex-wrap: wrap;
+    .mangaComp {
+      p {
+        font-size: 15px;
+      }
+    }
   }
 `;
 
@@ -285,20 +307,28 @@ export const MainStyle = styled.main`
       color: #000;
       padding: 5px;
       border-radius: 5px;
+      background-color: #666;
     }
     .formControl {
       margin-top: 15px;
+      line-height: 1.8;
     }
     button {
       background-color: transparent;
-      border: solid 2px #FFF;
+      border: solid 2px #fff;
       border-radius: 5px;
       padding: 5px;
       &:hover {
-        border: solid 2px #FFF;
-        background-color: #FFF;
+        border: solid 2px #fff;
+        background-color: #fff;
         color: #000;
       }
+    }
+    select {
+      width: 100%;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: #666;
     }
   }
   @media (max-width: 520px) {
@@ -396,6 +426,13 @@ export const ModalStyle = styled.div`
     }
   }
 `;
+
+export const ControlStyle = styled.section`
+  width: 200px;
+  border: solid 2px #666;
+  border-radius: 10px;
+  padding: 5px;
+`
 
 export const FooterStyle = styled.footer`
   background-color: #333;

@@ -1,8 +1,10 @@
 import React from "react";
 import { ModalStyle } from "./style";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase/config";
 
 const Modal = ({ estado, onClose, msj, adicional }) => {
+
   return (
     <ModalStyle
       style={
@@ -33,6 +35,11 @@ const Modal = ({ estado, onClose, msj, adicional }) => {
           <Link to={"/login"} className="sign">
           Acceso / Registro
           </Link> : ''
+        }
+        {
+          adicional === 'buy' ?
+          <Link className="sign" to={`/${auth.currentUser.uid}/compra`}>Ir a comprar</Link>
+          : ''
         }
       </div>
     </ModalStyle>

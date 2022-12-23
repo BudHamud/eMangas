@@ -9,10 +9,14 @@ import Buscar from "./pages/Buscar";
 import { CartContextProvider } from "./context/CartContext";
 import CartContainer from "./container/CartContainer";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import { auth } from "./firebase/config";
+import Compra from "./pages/Compra";
 
 export const ContextApp = createContext();
 
 function App() {
+
   return (
     <>
       <BrowserRouter>
@@ -26,6 +30,8 @@ function App() {
             <Route path="/carrito" element={<CartContainer />} />
             <Route path="/buscar" element={<Buscar />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/:userId/compra" element={<Compra />} />
           </Routes>
         </CartContextProvider>
       </BrowserRouter>

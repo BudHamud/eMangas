@@ -41,6 +41,10 @@ const CartContainer = () => {
       setModal(true)
       setMsj('No estás registrado')
       setExtra('sign')
+    } else {
+      setModal(true)
+      setMsj('Ya está todo listo')
+      setExtra('buy')
     }
   }
 
