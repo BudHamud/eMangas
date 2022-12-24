@@ -2,23 +2,42 @@ import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { MainStyle } from "../components/style";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { ToastContainer, toast } from "react-toastify";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 const SignUp = () => {
-  const [pass, setPass] = useState("");
-  const [email, setEmail] = useState("");
   const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
 
-  const sign = (e) => {
+  const db = getFirestore();
+
+  const sign = async (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, pass).then((e) => {
-      e.user.displayName = user;
-    });
-    setEmail("");
-    setPass("");
-    setUser("");
+    try {
+      await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(auth.currentUser, { displayName: user });
+      await addDoc(collection(db, "user"), {
+        userId: auth.currentUser.uid,
+        saldo: 0,
+      });
+      setEmail("");
+      setPass("");
+      setUser("");
+      toast.success('Registro y acceso exitoso')
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        toast.error("Email en uso", "error");
+      } else if (error.code === "auth/invalid-email") {
+        toast.error("Email inválido", "error");
+      } else if (error.code === "auth/weak-password") {
+        toast.error("Contraseña debe ser mayor a 5 dígitos", "error");
+      } else if (error.code) {
+        toast.error("Algo salió mal", "error");
+      }
+    }
   };
 
   return (
@@ -30,8 +49,9 @@ const SignUp = () => {
             <p>Usuario:</p>
             <input
               value={user}
-              type={"email"}
+              type={"text"}
               onChange={(e) => setUser(e.target.value)}
+              required
             />
           </div>
 
@@ -41,10 +61,22 @@ const SignUp = () => {
               value={email}
               type={"email"}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
           <div className="formControl">
+            <p>Contraseña:</p>
+            <input
+              value={pass}
+              type={"password"}
+              onChange={(e) => setPass(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="formControl">
+            <button onClick={sign}>Registrarse</button>
             <ToastContainer
               autoClose={1000}
               hideProgressBar={true}
@@ -52,16 +84,6 @@ const SignUp = () => {
               draggable={false}
               position="bottom-right"
             />
-            <p>Contraseña:</p>
-            <input
-              value={pass}
-              type={"password"}
-              onChange={(e) => setPass(e.target.value)}
-            />
-          </div>
-
-          <div className="formControl">
-            <button onClick={sign}>Registrarse</button>
           </div>
         </form>
       </MainStyle>

@@ -4,7 +4,7 @@ import {CargandoStyle} from './style'
 const Cargando = () => {
     return (
         <CargandoStyle>
-        <div className='apple' />
+        <img src='/logo3.png' />
         </CargandoStyle>
     );
 }

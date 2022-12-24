@@ -10,11 +10,7 @@ const Compra = () => {
     return (
         <>
          <MainStyle>
-            {
-                cartList.map((e, i) => (
-                    <ControlCompra key={i} data={e} />
-                ))
-            }
+            <ControlCompra data={cartList} />
          </MainStyle>
          
          <Footer />

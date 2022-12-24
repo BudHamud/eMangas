@@ -97,6 +97,7 @@ export const HeaderStyle = styled.header`
     }
   }
   @media (max-width: 520px) {
+    padding: 10px 10px 20px 10px;
     nav {
       justify-content: space-between;
       flex-direction: column;
@@ -134,9 +135,9 @@ export const CargandoStyle = styled.div`
   animation: load 1s ease-in-out infinite;
   .apple {
     background-color: ${theme.terColor};
-    height: 50px;
-    width: 50px;
-    border-radius: 35px 35px 50px 50px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px 50px 100px 100px;
     position: relative;
     &::after {
       content: "";
@@ -331,6 +332,30 @@ export const MainStyle = styled.main`
       background-color: #666;
     }
   }
+  .userProfile {
+    padding: 5px;
+    background-color: #666;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    border-radius: 5px;
+    img {
+      width: 100px;
+    }
+    button {
+      padding: 5px;
+      background-color: transparent;
+      border: none;
+      margin-top: 10px;
+      &:hover {
+        background-color: #fff;
+        color: #000;
+        border-radius: 5px;
+      }
+    }
+  }
   @media (max-width: 520px) {
     .cartList {
       width: 95%;
@@ -428,11 +453,46 @@ export const ModalStyle = styled.div`
 `;
 
 export const ControlStyle = styled.section`
-  width: 200px;
-  border: solid 2px #666;
-  border-radius: 10px;
-  padding: 5px;
-`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  .ordenCompra {
+    width: 200px;
+    border: solid 2px #666;
+    border-radius: 10px;
+    padding: 5px;
+    .itemCompra {
+      margin-top: 5px;
+    }
+  }
+  .pagoCompra {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+    border: solid 2px #666;
+    border-radius: 10px;
+    padding: 5px;
+    .pagoCard {
+      margin: auto 0;
+      button {
+        margin-top: 10px;
+        font-size: 15px;
+        border: none;
+        background-color: transparent;
+        padding: 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        &:hover {
+          background-color: #fff;
+          color: #000;
+        }
+      }
+    }
+  }
+`;
 
 export const FooterStyle = styled.footer`
   background-color: #333;
