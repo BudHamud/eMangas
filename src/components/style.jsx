@@ -341,6 +341,20 @@ export const MainStyle = styled.main`
     justify-content: space-around;
     gap: 20px;
     border-radius: 5px;
+    .infoProfile {
+      a {
+        text-decoration: none;
+        font-size: 14px;
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+        &:hover {
+        background-color: #fff;
+        color: #000;
+        border-radius: 5px;
+      }
+      }
+    }
     img {
       width: 100px;
     }
@@ -350,6 +364,7 @@ export const MainStyle = styled.main`
       border: none;
       margin-top: 10px;
       &:hover {
+        cursor: pointer;
         background-color: #fff;
         color: #000;
         border-radius: 5px;

@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { auth } from "./firebase/config";
 import Compra from "./pages/Compra";
+import Perfil from "./pages/Perfil";
 
 export const ContextApp = createContext();
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/:userId/compra" element={<Compra />} />
+            <Route path="/:userId/perfil" element={<Perfil />} />
           </Routes>
         </CartContextProvider>
       </BrowserRouter>

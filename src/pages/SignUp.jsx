@@ -22,6 +22,7 @@ const SignUp = () => {
       await addDoc(collection(db, "user"), {
         userId: auth.currentUser.uid,
         saldo: 0,
+        compra: []
       });
       setEmail("");
       setPass("");

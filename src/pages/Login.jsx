@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { MainStyle } from "../components/style";
 import { auth } from "../firebase/config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [online, setOnline] = useState(auth.currentUser);
+  const [online, setOnline] = useState(null);
   const [error, setError] = useState("");
 
+  useEffect( () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) setOnline(user)
+      else setOnline(null)
+    })
+  }, [])
+
   const signIn = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       await signInWithEmailAndPassword(auth, email, pass);
       const name = await userName()
@@ -30,8 +37,6 @@ const Login = () => {
       }
     }
   };
-
-  console.log(auth.currentUser);
 
   const exit = (e) => {
     e.preventDefault();
@@ -59,13 +64,14 @@ const Login = () => {
             />
             <div className="infoProfile">
               <p>Bienvenid@, {online.displayName}</p>
+              <Link to={`/${online.uid}/perfil`}>Mi perfil</Link>
               <button onClick={exit}>Cerrar Sesión</button>
             </div>
           </section>
         ) : (
           <>
             <h2>Acceso</h2>
-            <form>
+            <form action="/" >
               <div className="formControl">
                 <p>Email:</p>
                 <input
@@ -85,11 +91,7 @@ const Login = () => {
 
               <div className="formControl">
                 {error === "" ? "" : <p>{error}</p>}
-                {online != null ? (
-                  <button onClick={exit}>Cerrar Sesión</button>
-                ) : (
                   <button onClick={signIn}>Ingresar</button>
-                )}
               </div>
             </form>
             <p style={{ marginTop: 20 }}>

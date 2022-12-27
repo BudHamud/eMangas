@@ -21,7 +21,7 @@ const Buscar = () => {
                 <input onChange={(e) => setBusqueda(e.target.value)} className='buscador' type="text" />
 
                 {
-                    busqueda === '' ? 'Ningún resultado' :
+                    busqueda === '' || busqueda == ' ' ? 'Ningún resultado' :
                     <MangasContainer>
                     {
                         mangas.map(e => (
