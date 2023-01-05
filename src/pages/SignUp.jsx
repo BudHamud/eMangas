@@ -44,8 +44,12 @@ const SignUp = () => {
   return (
     <>
       <MainStyle>
+      <Link className="backBtn" to={'/login'}>Volver</Link>
         <h2>Registro</h2>
-        <form>
+        {
+          auth.currentUser !== null ?
+          'Ya te encontrás registrado, vuelve atrás' : 
+          <form>
           <div className="formControl">
             <p>Usuario:</p>
             <input
@@ -87,6 +91,7 @@ const SignUp = () => {
             />
           </div>
         </form>
+        }
       </MainStyle>
 
       <Footer />

@@ -214,8 +214,41 @@ export const MainStyle = styled.main`
   justify-content: center;
   align-items: center;
   padding: 20px 0;
+  .backBtn {
+    text-decoration: none;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    &:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+  .notUserOrder {
+    margin-top: 20px;
+    border: solid 2px #fff;
+    border-radius: 10px;
+    padding: 15px;
+    button {
+      background-color: transparent;
+      border: solid 2px #fff;
+      border-radius: 5px;
+      margin-top: 10px;
+      padding: 5px;
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+    input {
+      color: #000;
+    }
+  }
   h2 {
     margin-bottom: 20px;
+  }
+  h4 {
+    margin-top: 20px;
   }
   .buscador {
     padding: 3px;
@@ -349,10 +382,10 @@ export const MainStyle = styled.main`
         padding: 5px;
         margin-top: 5px;
         &:hover {
-        background-color: #fff;
-        color: #000;
-        border-radius: 5px;
-      }
+          background-color: #fff;
+          color: #000;
+          border-radius: 5px;
+        }
       }
     }
     img {

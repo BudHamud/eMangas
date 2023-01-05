@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ItemCount = ({ stock = 5, inital = 1, onAdd }) => {
   const [count, setCount] = useState(inital);
+  const [inCart, setInCart] = useState(false)
 
   const handleCount = () => {
     if (count < stock) {
@@ -12,16 +14,29 @@ const ItemCount = ({ stock = 5, inital = 1, onAdd }) => {
     if (count > inital) setCount(count - 1);
   };
 
-  const handleOnAdd = () => onAdd(count);
+  const handleOnAdd = () => {
+    onAdd(count)
+    setInCart(true)
+  }
 
   return (
     <>
-      <p>Cantidad: {count}</p>
-      <div className="cartBtns">
+      {
+        inCart ?
+        <div style={{display: 'flex', flexDirection: 'column', lineHeight: 2}}>
+        <Link to={'/mangas'}>Seguir comprando</Link>
+        <Link to={'/carrito'}>Ver Carrito</Link>
+        </div>
+        :
+        <div>
+        <p>Cantidad: {count}</p>
+        <div className="cartBtns">
         <button onClick={handleCount}>+</button>
         <button onClick={restart}>-</button>
         <button onClick={handleOnAdd}>Agregar al Carrito</button>
-      </div>
+        </div>
+        </div>
+      }
     </>
   );
 };

@@ -14,8 +14,6 @@ import { auth } from "./firebase/config";
 import Compra from "./pages/Compra";
 import Perfil from "./pages/Perfil";
 
-export const ContextApp = createContext();
-
 function App() {
 
   return (
