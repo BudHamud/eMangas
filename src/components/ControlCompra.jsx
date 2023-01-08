@@ -4,17 +4,26 @@ import { auth } from "../firebase/config";
 import { useCartContext } from "../context/CartContext";
 import { toast, ToastContainer } from "react-toastify";
 import getUser from "../hooks/getUser";
-import { getFirestore, updateDoc, doc, arrayUnion } from "firebase/firestore";
+import GetMangas from "../hooks/getMangas";
+import {
+  getFirestore,
+  updateDoc,
+  doc,
+  arrayUnion,
+  increment,
+  deleteDoc,
+} from "firebase/firestore";
 
 const ControlCompra = ({ data }) => {
   const { cartList, vaciarCarrito } = useCartContext();
-
+  const [mangas, load] = GetMangas();
   const [user, saldo, fecha, loading] = getUser();
-  const [saldoActual, setActual] = useState(0)
+  const [saldoActual, setActual] = useState(0);
+  const [newItems, setItems] = useState([]);
 
   useEffect(() => {
-    setActual(saldo)
-  }, [saldo])
+    setActual(saldo);
+  }, [saldo]);
 
   const formato = [
     "kanzenX",
@@ -37,22 +46,29 @@ const ControlCompra = ({ data }) => {
 
   const onBuy = async () => {
     if (total === 0) {
-      toast.error('Sin mangas en el carrito')
+      toast.error("Sin mangas en el carrito");
     } else if (saldo < total) {
       toast.error("Sin saldo suficiente para realizar esta compra");
     } else {
+      let arr = [];
+      await cartList.map((e) => {
+        updateDoc(doc(db, "mangas", e.id), {
+          stock: e.stock - e.cantidad,
+        });
+      });
+      cartList.map((e) => {
+        const { stock, ...newItem } = e;
+        arr.push(newItem);
+      });
       await updateDoc(doc(db, "user", user.id), {
         saldo: saldo - total,
-        compra: arrayUnion(...cartList)
+        compra: arrayUnion(...arr),
       });
       toast.success("Operación exitosa");
-      setActual(saldoActual - total)
+      setActual(saldoActual - total);
       vaciarCarrito();
     }
-    
   };
-
-  console.log(cartList);
 
   return (
     <ControlStyle>
@@ -68,7 +84,9 @@ const ControlCompra = ({ data }) => {
         <h4 style={{ marginBottom: 15 }}>Orden de compra</h4>
         {data.map((e, i) => (
           <div key={e.id} className="itemCompra">
-            <p>x{e.cantidad} {e.nombre}</p>
+            <p>
+              x{e.cantidad} {e.nombre}
+            </p>
             <p>${precio[formato.indexOf(e.formato)]}</p>
           </div>
         ))}

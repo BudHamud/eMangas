@@ -247,9 +247,6 @@ export const MainStyle = styled.main`
   h2 {
     margin-bottom: 20px;
   }
-  h4 {
-    margin-top: 20px;
-  }
   .buscador {
     padding: 3px;
     background-color: #444;

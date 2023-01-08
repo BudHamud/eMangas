@@ -17,6 +17,12 @@ const PerfilStyle = styled.section`
     padding: 5px;
     color: #000;
   }
+  .historial {
+    background-color: #333;
+    .historialCard {
+      background-color: #111;
+    }
+  }
 `;
 
 const Perfil = () => {
@@ -26,12 +32,6 @@ const Perfil = () => {
   const [saldoActual, setActual] = useState(null);
 
   const db = getFirestore();
-
-  if (user != null) {
-    user.compra.map(e => {
-        console.log(e);
-    })
-  }
 
   const agregarSaldo = async () => {
     await updateDoc(doc(db, "user", user.id), {
