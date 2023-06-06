@@ -250,7 +250,7 @@ export const MainStyle = styled.main`
   h4 {
     margin-top: 20px;
   }
-  .buscador {
+  .search {
     padding: 3px;
     background-color: #444;
     border-radius: 5px;
@@ -334,74 +334,6 @@ export const MainStyle = styled.main`
     margin-top: 20px;
     &:hover {
       opacity: 0.7;
-    }
-  }
-  form {
-    input {
-      color: #000;
-      padding: 5px;
-      border-radius: 5px;
-      background-color: #666;
-    }
-    .formControl {
-      margin-top: 15px;
-      line-height: 1.8;
-    }
-    button {
-      background-color: transparent;
-      border: solid 2px #fff;
-      border-radius: 5px;
-      padding: 5px;
-      &:hover {
-        border: solid 2px #fff;
-        background-color: #fff;
-        color: #000;
-      }
-    }
-    select {
-      width: 100%;
-      padding: 5px;
-      border-radius: 5px;
-      background-color: #666;
-    }
-  }
-  .userProfile {
-    padding: 5px;
-    background-color: #666;
-    min-width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 20px;
-    border-radius: 5px;
-    .infoProfile {
-      a {
-        text-decoration: none;
-        font-size: 14px;
-        width: 100%;
-        padding: 5px;
-        margin-top: 5px;
-        &:hover {
-          background-color: #fff;
-          color: #000;
-          border-radius: 5px;
-        }
-      }
-    }
-    img {
-      width: 100px;
-    }
-    button {
-      padding: 5px;
-      background-color: transparent;
-      border: none;
-      margin-top: 10px;
-      &:hover {
-        cursor: pointer;
-        background-color: #fff;
-        color: #000;
-        border-radius: 5px;
-      }
     }
   }
   @media (max-width: 520px) {

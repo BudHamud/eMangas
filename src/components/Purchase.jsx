@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import { ControlStyle } from "./style";
-import { auth } from "../firebase/config";
 import { useCartContext } from "../context/CartContext";
 import { toast, ToastContainer } from "react-toastify";
 import getUser from "../hooks/getUser";
 import { getFirestore, updateDoc, doc, arrayUnion } from "firebase/firestore";
 
-const ControlCompra = ({ data }) => {
+const Purchase = ({ data }) => {
   const { cartList, vaciarCarrito } = useCartContext();
 
-  const [user, saldo, fecha, loading] = getUser();
-  const [saldoActual, setActual] = useState(0)
+  const [user, balance, fecha, loading] = getUser();
+  const [actualBalance, setBalance] = useState(0)
 
   useEffect(() => {
-    setActual(saldo)
-  }, [saldo])
+    setBalance(balance)
+  }, [balance])
 
   const formato = [
     "kanzenX",
@@ -38,15 +37,15 @@ const ControlCompra = ({ data }) => {
   const onBuy = async () => {
     if (total === 0) {
       toast.error('Sin mangas en el carrito')
-    } else if (saldo < total) {
+    } else if (balance < total) {
       toast.error("Sin saldo suficiente para realizar esta compra");
     } else {
       await updateDoc(doc(db, "user", user.id), {
-        saldo: saldo - total,
+        saldo: balance - total,
         compra: arrayUnion(...cartList)
       });
       toast.success("Operación exitosa");
-      setActual(saldoActual - total)
+      setBalance(actualBalance - total)
       vaciarCarrito();
     }
     
@@ -59,7 +58,7 @@ const ControlCompra = ({ data }) => {
       <section className="pagoCompra">
         <h4>Pago</h4>
         <div className="pagoCard">
-          <p>Saldo en la cuenta: ${loading ? 0 : saldoActual}</p>
+          <p>Saldo en la cuenta: ${loading ? 0 : actualBalance}</p>
           <button onClick={onBuy}>Finalizar Compra</button>
         </div>
       </section>
@@ -89,4 +88,4 @@ const ControlCompra = ({ data }) => {
   );
 };
 
-export default ControlCompra;
+export default Purchase;

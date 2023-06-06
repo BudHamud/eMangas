@@ -3,10 +3,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { MainStyle, MangasContainer } from "../components/style";
 import { auth } from "../firebase/config";
 import getUser from "../hooks/getUser";
-import Footer from "../components/Footer";
 import styled from "styled-components";
 import { doc, getFirestore, updateDoc } from "firebase/firestore";
-import MangaComp from '../components/MangaComp'
 
 const PerfilStyle = styled.section`
   display: flex;
@@ -26,12 +24,6 @@ const Perfil = () => {
   const [saldoActual, setActual] = useState(null);
 
   const db = getFirestore();
-
-  if (user != null) {
-    user.compra.map(e => {
-        console.log(e);
-    })
-  }
 
   const agregarSaldo = async () => {
     await updateDoc(doc(db, "user", user.id), {
@@ -75,7 +67,6 @@ const Perfil = () => {
           </section>
         </PerfilStyle>
       </MainStyle>
-      <Footer />
     </>
   );
 };

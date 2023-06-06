@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
-import { MainStyle } from "../components/style";
+import { LoginStyle } from "./Login";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,12 +21,12 @@ const SignUp = () => {
       await addDoc(collection(db, "user"), {
         userId: auth.currentUser.uid,
         saldo: 0,
-        compra: []
+        compra: [],
       });
       setEmail("");
       setPass("");
       setUser("");
-      toast.success('Registro y acceso exitoso')
+      toast.success("Registro y acceso exitoso");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         toast.error("Email en uso", "error");
@@ -43,58 +42,61 @@ const SignUp = () => {
 
   return (
     <>
-      <MainStyle>
-      <Link className="backBtn" to={'/login'}>Volver</Link>
-        <h2>Registro</h2>
-        {
-          auth.currentUser !== null ?
-          'Ya te encontrás registrado, vuelve atrás' : 
-          <form>
-          <div className="formControl">
-            <p>Usuario:</p>
-            <input
-              value={user}
-              type={"text"}
-              onChange={(e) => setUser(e.target.value)}
-              required
-            />
-          </div>
+      <LoginStyle>
+        <section className="leftImg" />
+        <section className="formSection">
+          <Link className="backBtn" to={"/login"}>
+            Volver
+          </Link>
+          <h2>Registro</h2>
+          {auth.currentUser !== null ? (
+            "Ya te encontrás registrado, vuelve atrás"
+          ) : (
+            <form>
+              <div className="formControl">
+                <p>Usuario:</p>
+                <input
+                  value={user}
+                  type={"text"}
+                  onChange={(e) => setUser(e.target.value)}
+                  required
+                />
+              </div>
 
-          <div className="formControl">
-            <p>Email:</p>
-            <input
-              value={email}
-              type={"email"}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+              <div className="formControl">
+                <p>Email:</p>
+                <input
+                  value={email}
+                  type={"email"}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
 
-          <div className="formControl">
-            <p>Contraseña:</p>
-            <input
-              value={pass}
-              type={"password"}
-              onChange={(e) => setPass(e.target.value)}
-              required
-            />
-          </div>
+              <div className="formControl">
+                <p>Contraseña:</p>
+                <input
+                  value={pass}
+                  type={"password"}
+                  onChange={(e) => setPass(e.target.value)}
+                  required
+                />
+              </div>
 
-          <div className="formControl">
-            <button onClick={sign}>Registrarse</button>
-            <ToastContainer
-              autoClose={1000}
-              hideProgressBar={true}
-              theme="dark"
-              draggable={false}
-              position="bottom-right"
-            />
-          </div>
-        </form>
-        }
-      </MainStyle>
-
-      <Footer />
+              <div className="formControl">
+                <button onClick={sign}>Registrarse</button>
+                <ToastContainer
+                  autoClose={1000}
+                  hideProgressBar={true}
+                  theme="dark"
+                  draggable={false}
+                  position="bottom-right"
+                />
+              </div>
+            </form>
+          )}
+        </section>
+      </LoginStyle>
     </>
   );
 };

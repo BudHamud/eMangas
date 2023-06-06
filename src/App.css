@@ -14,3 +14,7 @@
     font-family: 'Ubuntu', sans-serif;
     color: white;
 }
+
+.loginMain {
+    background-color: red !important;
+}
