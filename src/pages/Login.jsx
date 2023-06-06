@@ -14,7 +14,8 @@ export const LoginStyle = styled.main`
   align-items: center;
   .leftImg {
     width: 50vw;
-    background-image: url('/src/assets/yofukashi.jpg');
+    background-color: #ff0068;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/emangas-1bb68.appspot.com/o/yofukashi.jpg?alt=media&token=ff4ba1c0-a4ed-4a13-bce9-a1e07fa9e679');
     height: 82vh;
     background-repeat: no-repeat;
     background-size: cover;
