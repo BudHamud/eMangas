@@ -79,7 +79,6 @@ const ItemListContainer = () => {
           />
         )}
       </MainStyle>
-      <Footer />
     </>
   );
 };

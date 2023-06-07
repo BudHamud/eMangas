@@ -17,6 +17,32 @@ const PerfilStyle = styled.section`
   }
 `;
 
+const HistorialStyle = styled.section`
+  background-color: #444;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  width: 500px;
+  h3 {
+    margin-bottom: 20px;
+  }
+  .mangas {
+    gap: 5px;
+    overflow-x: scroll;
+    border-radius: 5px;
+    ::-webkit-scrollbar {
+      background-color: #444;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #333;
+    }
+    display: flex;
+    img {
+      height: 150px;
+    }
+  }
+`;
+
 const Perfil = () => {
   const [user, saldo, loading] = getUser();
   const [online, setOnline] = useState(null);
@@ -28,7 +54,7 @@ const Perfil = () => {
   const agregarSaldo = async () => {
     await updateDoc(doc(db, "user", user.id), {
       saldo: 1000 + saldo,
-      fecha: new Date()
+      fecha: new Date(),
     });
     setActual(saldo + 1000);
   };
@@ -42,8 +68,8 @@ const Perfil = () => {
     setActual(saldo);
   }, [saldo]);
 
-  const fecha = new Date()
-  const manana = new Date(fecha.getTime() + (24 * 60 * 60 * 1000));
+  const fecha = new Date();
+  const manana = new Date(fecha.getTime() + 24 * 60 * 60 * 1000);
 
   return (
     <>
@@ -53,18 +79,28 @@ const Perfil = () => {
           <button onClick={agregarSaldo}>Agregar Saldo</button>
           {fecha ? "Disponible" : fecha}
 
-          <section style={{textAlign: 'center', marginTop: 20}} className="historial">
-          <h3>Historial:</h3>
-            {
-                user != null 
-                ? user.compra.map(e => (
+          <HistorialStyle>
+            <h3>Historial:</h3>
+            <section className="mangas">
+              {user != null
+                ? user.compra.map((e) => (
                     <div key={e.id} className="historialCard">
-                    <p>x{e.cantidad} {e.nombre}</p>
+                      <img src={e.img} />
+                      <p>
+                        x{e.cantidad}{" "}
+                        {e.nombre.length > 8
+                          ? `${e.nombre.slice(0, 7)}...${
+                              e.nombre.split(" ")[
+                                e.nombre.split(" ").length - 1
+                              ]
+                            }`
+                          : e.nombre}
+                      </p>
                     </div>
-                ))
-                : ''
-            }
-          </section>
+                  ))
+                : ""}
+            </section>
+          </HistorialStyle>
         </PerfilStyle>
       </MainStyle>
     </>

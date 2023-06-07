@@ -37,7 +37,6 @@ const ItemDetailContainer = () => {
             <Cargando />
         }
         </MainStyle>
-        <Footer />
 
         </>
     );
