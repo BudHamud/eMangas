@@ -5,10 +5,12 @@ import GetMangas from "../hooks/getMangas";
 import Releases from "../components/Releases";
 import { Tweet } from "react-twitter-widgets";
 import styled from "styled-components";
+import Cargando from '../components/Cargando'
 
 const Grid = styled.section`
   display: grid;
   grid-template-areas: "releases twitter" "best-seller twitter";
+  min-height: 70vh;
   .releases {
     grid-area: releases;
     justify-self: center;
@@ -39,7 +41,9 @@ const Inicio = () => {
   return (
     <>
       {loading ? (
-        "Cargando..."
+        <MainStyle>
+        <Cargando />
+        </MainStyle>
       ) : (
         <MainStyle>
           <Grid>
